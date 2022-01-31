@@ -1,0 +1,67 @@
+import pygame
+from pygame import mixer
+
+class button:
+    def __init__(self, x, y, width, height, color, command):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.color = color
+        self.command = command
+    def draw(self):
+        pygame.draw.rect(window, self.color, (self.x, self.y, self.width, self.height))
+    def click(self, mousex, mousey):
+        if self.x <= mousex <= self.x + self.width and self.y <= mousey <= self.y + self.height:
+            return True
+        return False
+
+WIDTH = 700
+HEIGHT = 400
+
+green = (0,255,0)
+red = (255,0,0)
+blue = (0,0,255)
+
+window = pygame.display.set_mode((WIDTH, HEIGHT))
+
+gurenge_button = button(50,100,100,100, red, "demon")
+sweater_weather_button = button(200, 100, 100, 100, blue, "sweater")
+
+drawable = [gurenge_button, sweater_weather_button]
+buttons = [gurenge_button, sweater_weather_button]
+
+run = True
+
+pygame.display.set_caption('Welcome to The Jukebox')
+
+def draw():
+    window.fill(green)
+    for item in drawable:
+        item.draw()
+    pygame.display.update()
+
+while run:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            mousepos = pygame.mouse.get_pos()
+            for item in buttons:
+                if item.click(mousepos[0], mousepos[1]):
+                    if item.command == "demon":
+                        mixer.init()
+                        mixer.music.load("Gurenge (TV Version).wav")
+                        mixer.music.set_volume(0.7)
+                        mixer.music.play()
+                    elif item.command == "sweater":
+                        mixer.init()
+                        mixer.music.load("Sweater Weather.wav")
+                        mixer.music.set_volume(0.7)
+                        mixer.music.play()
+
+    
+
+    draw()
+
+pygame.quit()
