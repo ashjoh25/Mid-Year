@@ -32,8 +32,8 @@ worth_it_button = button(50, 250, 100, 50, blue, "worth")
 pause_button = button(175, 300, 50, 50, red, "pause")
 unpause_button = button(275, 300, 50, 50, blue, "unpause")
 
-drawable = [gurenge_button, sweater_weather_button, riptide_button, pause_button, unpause_button]
-buttons = [gurenge_button, sweater_weather_button, riptide_button, pause_button, unpause_button]
+drawable = [gurenge_button, sweater_weather_button, riptide_button, worth_it_button, pause_button, unpause_button]
+buttons = [gurenge_button, sweater_weather_button, riptide_button, worth_it_button, pause_button, unpause_button]
 
 run = True
 
