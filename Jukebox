@@ -9,8 +9,10 @@ class button:
         self.height = height
         self.color = color
         self.command = command
+
     def draw(self):
         pygame.draw.rect(window, self.color, (self.x, self.y, self.width, self.height))
+        
     def click(self, mousex, mousey):
         if self.x <= mousex <= self.x + self.width and self.y <= mousey <= self.y + self.height:
             return True
