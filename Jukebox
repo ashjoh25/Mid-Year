@@ -3,25 +3,28 @@ from pygame import mixer
 
 pygame.init()
 
-screen = pygame.display.set_mode((800, 600))
-GAME_FONT = pygame.font.SysFont("arial.ttf", 24, bold=False, italic=False)
+GAME_FONT = pygame.font.SysFont("arial.tff", 24, bold=False, italic=False)
 
 class button:
-    def __init__(self, x, y, width, height, color, command):
+    def __init__(self, x, y, width, height, color, command): #word
         self.x = x
         self.y = y
         self.width = width
         self.height = height
         self.color = color
         self.command = command
+        #self.word = word
     def draw(self):
-        pygame.draw.rect(window, self.color, (self.x, self.y, self.width, self.height))
+        pygame.draw.rect(window, self.color, (self.x, self.y, self.width, self.height))#, self.word)
+        #pygame.word.rect()
     def click(self, mousex, mousey):
         if self.x <= mousex <= self.x + self.width and self.y <= mousey <= self.y + self.height:
             return True
         return False
+    def text(self):
+        pass
 
-WIDTH = 700
+WIDTH = 500
 HEIGHT = 400
 
 green = (0,255,0)
@@ -30,27 +33,44 @@ blue = (0,0,255)
 
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
-gurenge_button = button(50,100,100,100, red, "demon")
-sweater_weather_button = button(200, 100, 100, 100, blue, "sweater")
+gurenge_button = button(50,25,100,50, (100, 232, 159), "demon")
+sweater_weather_button = button(50, 100, 100, 50, (108, 109, 112), "sweater")
+riptide_button = button(50, 175, 100, 50, (157, 12, 12), "riptide")
+worth_it_button = button(50, 250, 100, 50, (233, 169, 49), "worth")
+pause_button = button(175, 325, 50, 50, red, "pause")
+unpause_button = button(275, 325, 50, 50, blue, "unpause")
 
-drawable = [gurenge_button, sweater_weather_button]
-buttons = [gurenge_button, sweater_weather_button]
+SweaterImg = pygame.image.load('Sweater Weather Cover.jpg')
+
+drawable = [gurenge_button, sweater_weather_button, riptide_button, worth_it_button, pause_button, unpause_button]
+buttons = [gurenge_button, sweater_weather_button, riptide_button, worth_it_button, pause_button, unpause_button]
 
 run = True
 
 pygame.display.set_caption('Welcome to The Jukebox')
 
-
-
 def draw():
-    window.fill(green)
+    window.fill((225, 227, 231))
     for item in drawable:
         item.draw()
+        text_surface = GAME_FONT.render("Hello World!", True, (0, 0, 0))
+        window.blit(text_surface, (40, 250))
+        pygame.display.flip()
     pygame.display.update()
 
+#text_surface = GAME_FONT.render("Hello World!", True, (0, 0, 0))
+#window.blit(text_surface, (40, 250))
+    # GAME_FONT.render(screen, (40, 350), "Hello World!", True, (0, 0, 0))
+
+pygame.display.flip()
 
 while run:
     for event in pygame.event.get():
+        #gameDisplay.fill(white)
+        #largeText = pygame.font.Font('freesansbold.ttf',115)
+        #TextSurf, TextRect = ("Riptide", largeText)
+        #TextRect.center = ((window.width/2),(window.height/2))
+        #gameDisplay.blit(TextSurf, TextRect)
         if event.type == pygame.QUIT:
             run = False
         elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -59,41 +79,38 @@ while run:
                 if item.click(mousepos[0], mousepos[1]):
                     if item.command == "demon":
                         mixer.init()
-                        mixer.music.load("Demon Slayer - Kimetsu no Yaiba - OP Full 'Gurenge'.wav")
+                        mixer.music.load("Gurenge (TV Version).wav")
                         mixer.music.set_volume(0.7)
                         mixer.music.play()
                     elif item.command == "sweater":
                         mixer.init()
+                        #window.fill(green)
+                        #window.blit(SweaterImg,(WIDTH/2, HEIGHT/2))
+                        pygame.display.flip()
                         mixer.music.load("Sweater Weather.wav")
                         mixer.music.set_volume(0.7)
                         mixer.music.play()
-
-# screen.fill((255,255,255))
-    text_surface = GAME_FONT.render("Hello World!", True, (0, 0, 0))
-    screen.blit(text_surface, (40, 250))
-    # GAME_FONT.render(screen, (40, 350), "Hello World!", True, (0, 0, 0))
-
-
-    pygame.display.flip()
-    
-    if event.type == pygame.QUIT:
-        pygame.quit()
-        quit()
-    pygame.display.update()
-    
-
+                        #pygame.image.load(r'C:Sweater Weather Cover.jpg', (300, 100))
+                        #while True:
+                            #window.fill(green)
+                            #window.blit(SweaterImg,(0,0))                        
+                    elif item.command == "riptide":
+                        mixer.init()
+                        mixer.music.load("Riptide.wav")
+                        mixer.music.set_volume(0.7)
+                        mixer.music.play()
+                    elif item.command == "worth":
+                        mixer.init()
+                        mixer.music.load("Worth It.wav")
+                        mixer.music.set_volume(0.7)
+                        mixer.music.play()
+                    if item.command == "pause":
+                        pygame.mixer.music.pause()
+                    if item.command == "unpause":
+                        pygame.mixer.music.unpause()
     draw()
+    
 
-
-X = 400
-Y = 400
-display_surfact = pygame.display.set_mode((X, Y))
-pygame.display.set_caption('Show Text')
-
-font = pygame.font.Font('freesansbold.ttf', 32)
-
-text = font.render('Jukebox', True)
-
-textRect = text.get_rect()
-
-textRect.center = (X // 2, Y // 2)
+    
+    
+pygame.quit()
