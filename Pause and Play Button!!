@@ -19,18 +19,27 @@ class button:
 WIDTH = 500
 HEIGHT = 400
 
-green = (0,255,0)
-red = (255,0,0)
-blue = (0,0,255)
+# make color gradient for buttons
+#green = (0,255,0)
+#red = (255,0,0)
+#blue = (0,0,255)
+bg_color = (235, 224, 245)
+bc1 = (147, 133, 255)
+bc2 = (185, 148, 255)
+bc3 = (222, 157, 255)
+bc4 = (245, 168, 255)
+unpause_c = (255, 255, 255)
+pause_c = (237, 237, 237)
+
 
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
 gurenge_button = button(50,25,100,50, (100, 232, 159), "demon")
 sweater_weather_button = button(50, 100, 100, 50, (108, 109, 112), "sweater")
-riptide_button = button(50, 175, 100, 50, red, "riptide")
-worth_it_button = button(50, 250, 100, 50, blue, "worth")
-pause_button = button(175, 300, 50, 50, red, "pause")
-unpause_button = button(275, 300, 50, 50, blue, "unpause")
+riptide_button = button(50, 175, 100, 50, bc1, "riptide")
+worth_it_button = button(50, 250, 100, 50, bc2, "worth")
+pause_button = button(175, 300, 50, 50, pause_c, "pause")
+unpause_button = button(275, 300, 50, 50, unpause_c, "unpause")
 
 drawable = [gurenge_button, sweater_weather_button, riptide_button, worth_it_button, pause_button, unpause_button]
 buttons = [gurenge_button, sweater_weather_button, riptide_button, worth_it_button, pause_button, unpause_button]
@@ -40,7 +49,7 @@ run = True
 pygame.display.set_caption('Welcome to The Jukebox')
 
 def draw():
-    window.fill(green)
+    window.fill(bg_color)
     for item in drawable:
         item.draw()
     pygame.display.update()
