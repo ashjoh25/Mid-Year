@@ -67,10 +67,12 @@ while run:
                         mixer.music.load("Sweater Weather.wav")
                         mixer.music.set_volume(0.7)
                         mixer.music.play()
-        screen.fill((255,255,255))
-        text_surface, rect = GAME_FONT.render("Hello World!", (0, 0, 0))
-        screen.blit(text_surface, (40, 250))
-        GAME_FONT.render(screen, (40, 350), "Hello World!", (0, 0, 0))
+
+# screen.fill((255,255,255))
+    text_surface = GAME_FONT.render("Hello World!", True, (0, 0, 0))
+    screen.blit(text_surface, (40, 250))
+    # GAME_FONT.render(screen, (40, 350), "Hello World!", True, (0, 0, 0))
+
 
     pygame.display.flip()
     
