@@ -55,22 +55,10 @@ def draw():
         item.draw()
         text_surface = GAME_FONT.render("Hello World!", True, (0, 0, 0))
         window.blit(text_surface, (40, 250))
-        pygame.display.flip()
     pygame.display.update()
-
-#text_surface = GAME_FONT.render("Hello World!", True, (0, 0, 0))
-#window.blit(text_surface, (40, 250))
-    # GAME_FONT.render(screen, (40, 350), "Hello World!", True, (0, 0, 0))
-
-pygame.display.flip()
 
 while run:
     for event in pygame.event.get():
-        #gameDisplay.fill(white)
-        #largeText = pygame.font.Font('freesansbold.ttf',115)
-        #TextSurf, TextRect = ("Riptide", largeText)
-        #TextRect.center = ((window.width/2),(window.height/2))
-        #gameDisplay.blit(TextSurf, TextRect)
         if event.type == pygame.QUIT:
             run = False
         elif event.type == pygame.MOUSEBUTTONDOWN:
