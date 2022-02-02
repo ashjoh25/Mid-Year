@@ -53,8 +53,8 @@ def draw():
     window.fill((225, 227, 231))
     for item in drawable:
         item.draw()
-        text_surface = GAME_FONT.render("Hello World!", True, (0, 0, 0))
-        window.blit(text_surface, (40, 250))
+        text_surface = GAME_FONT.render("Jukebox", True, (0, 0, 0))
+        window.blit(text_surface, (218, 4))
     pygame.display.update()
 
 while run:
