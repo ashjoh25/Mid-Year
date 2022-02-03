@@ -33,6 +33,14 @@ blue = (0,0,255)
 
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
+f = open('song_list.txt')
+for element in f:
+    titles = element.split(';')
+    #for titles in element:
+    #text_surface = GAME_FONT.render(titles[0], True, (0, 0, 0))
+    #window.blit(text_surface, (200, 200))
+    print(titles[0])
+
 gurenge_button = button(50,25,100,50, (100, 232, 159), "demon")
 sweater_weather_button = button(50, 100, 100, 50, (108, 109, 112), "sweater")
 riptide_button = button(50, 175, 100, 50, (157, 12, 12), "riptide")
