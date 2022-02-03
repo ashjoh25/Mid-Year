@@ -20,14 +20,28 @@ WIDTH = 500
 HEIGHT = 400
 
 # make color gradient for buttons
-#green = (0,255,0)
-#red = (255,0,0)
-#blue = (0,0,255)
 bg_color = (235, 224, 245)
+# keeping these for hard code
 bc1 = (147, 133, 255)
 bc2 = (185, 148, 255)
 bc3 = (222, 157, 255)
 bc4 = (245, 168, 255)
+
+# say if button added or +1 in button counter, change the color
+# make each number (x, y, z) a variable that will then change or get subtracted
+# making random counter variable so there is no error for now
+counter = 0
+x = 240
+y = 125
+z = 255
+newButtonColor = (int(x), int(y), int(z))
+if counter + 1:
+    x -= 30
+    y -= 30
+    z -= 30
+    newButtonColor = (int(x), int(y), int(z))
+
+# pause and unpause need independent variables because they aren't in the list of songs
 unpause_c = (255, 255, 255)
 pause_c = (237, 237, 237)
 
