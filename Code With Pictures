@@ -28,15 +28,15 @@ class button:
         pass
 
 Gimg = pygame.image.load('Gurenge Cover.jpg')
-Gimg = pygame.transform.scale(Gimg, (200,200))
+Gimg = pygame.transform.scale(Gimg, (250,250))
 SWimg = pygame.image.load('SweaterWeatherCover.png')
-SWimg = pygame.transform.scale(SWimg, (200,200))
+SWimg = pygame.transform.scale(SWimg, (250,250))
 Rimg = pygame.image.load('Riptide Cover.jpg')
-Rimg = pygame.transform.scale(Rimg, (200,200))
+Rimg = pygame.transform.scale(Rimg, (250,250))
 WIimg = pygame.image.load('Worth It Album.png')
-WIimg = pygame.transform.scale(WIimg, (200,200))
-White = pygame.image.load('White Picture.png')
-White = pygame.transform.scale(White, (200, 200))
+WIimg = pygame.transform.scale(WIimg, (250,250))
+White = pygame.image.load('225, 227, 231.png')
+White = pygame.transform.scale(White, (250, 250))
 image = White
 
 WIDTH = 500
@@ -60,8 +60,8 @@ bc1 = (147, 133, 255)
 bc2 = (185, 148, 255)
 bc3 = (222, 157, 255)
 bc4 = (245, 168, 255)
-unpause_c = (255, 255, 255)
-pause_c = (237, 237, 237)
+unpause_c = (225, 227, 231)
+pause_c = (225, 227, 231)
 
 gurenge_button = button(50,25,100,50, bc1, "demon")
 sweater_weather_button = button(50, 100, 100, 50, bc2, "sweater")
@@ -119,12 +119,18 @@ font_preferences = [
 
 text = create_text("Jukebox", font_preferences, 50, (0, 128, 0))
 
+play = pygame.image.load('Play Button Icon.png')
+play = pygame.transform.scale(play, (50, 50))
+pause = pygame.image.load('Pause Button Icon.png')
+pause = pygame.transform.scale(pause, (50, 50))
+
 def draw():
-    #DISPLAY.fill((225, 227, 231))
     for item in drawable:
         item.draw()
         screen.blit(text,
         (315 - text.get_width() // 2, 10 - text.get_height() // 5))
+    DISPLAY.blit(play, (275, 325))
+    DISPLAY.blit(pause, (175, 325))
     pygame.display.flip()
 
 while run:
@@ -164,7 +170,7 @@ while run:
                     if item.command == "unpause":
                         pygame.mixer.music.unpause()
         DISPLAY.fill((225, 227, 231))
-        DISPLAY.blit(image, (200, 75))
+        DISPLAY.blit(image, (200, 70))
     draw()
 
 pygame.quit()
