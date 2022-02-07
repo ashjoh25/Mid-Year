@@ -27,9 +27,19 @@ class button:
 WIDTH = 500
 HEIGHT = 400
 
-green = (0,255,0)
-red = (255,0,0)
-blue = (0,0,255)
+# green = (0,255,0)
+# red = (255,0,0)
+# blue = (0,0,255)
+
+# keeping these for hard code
+bc1 = (147, 133, 255)
+bc2 = (185, 148, 255)
+bc3 = (222, 157, 255)
+bc4 = (245, 168, 255)
+
+# pause and unpause need independent variables because they aren't in the list of songs
+unpause_c = (255, 255, 255)
+pause_c = (199, 199, 199)
 
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
@@ -41,12 +51,12 @@ window = pygame.display.set_mode((WIDTH, HEIGHT))
     #window.blit(text_surface, (200, 200))
     # print(titles[0])
 
-gurenge_button = button(50,25,100,50, (100, 232, 159), "demon")
-sweater_weather_button = button(50, 100, 100, 50, (108, 109, 112), "sweater")
-riptide_button = button(50, 175, 100, 50, (157, 12, 12), "riptide")
-worth_it_button = button(50, 250, 100, 50, (233, 169, 49), "worth")
-pause_button = button(175, 325, 50, 50, red, "pause")
-unpause_button = button(275, 325, 50, 50, blue, "unpause")
+gurenge_button = button(50,25,100,50, bc1, "demon")
+sweater_weather_button = button(50, 100, 100, 50, bc2, "sweater")
+riptide_button = button(50, 175, 100, 50, bc3, "riptide")
+worth_it_button = button(50, 250, 100, 50, bc4, "worth")
+pause_button = button(175, 325, 50, 50, pause_c, "pause")
+unpause_button = button(275, 325, 50, 50, unpause_c, "unpause")
 
 SweaterImg = pygame.image.load('Sweater Weather Cover.jpg')
 
