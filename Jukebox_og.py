@@ -38,8 +38,8 @@ bc3 = (222, 157, 255)
 bc4 = (245, 168, 255)
 
 # pause and unpause need independent variables because they aren't in the list of songs
-unpause_c = (255, 255, 255)
-pause_c = (199, 199, 199)
+unpause_c = (71, 18, 107)
+pause_c = (131, 63, 180)
 
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
