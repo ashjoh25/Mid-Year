@@ -1,6 +1,6 @@
 import pygame
 
-from button_object import ButtonRoster
+from jukebox_object import ButtonRoster
 from jukebox_screen import Screen
 
 class Jukebox_Manager (object):
