@@ -44,12 +44,24 @@ class ButtonRoster (object):
         f = open(file_name)
 
         for line in f:
+            c += 1
+            # say if button added or +1 in button counter, change the color
+            # make each number (x, u, z) a variable that will then change or get subtracted
+            x = 240
+            u = 125
+            z = 255
+            newButtonColor = (int(x), int(y), int(z))
+            if c + 1:
+                x -= 30
+                u -= 30
+                z -= 30
+                newButtonColor = (int(x), int(y), int(z))
+
             line = line.strip()
             line_elements = line.split(';')
-            b = Button(50, y, 100, 50, (c, c, c), index, line_elements[0], line_elements[1])
+            b = Button(50, y, 100, 50, newButtonColor, index, line_elements[0], line_elements[1])
             self.buttons_list.append(b)
 
             y += 75 
-            c += 30 
             index += 1
 
