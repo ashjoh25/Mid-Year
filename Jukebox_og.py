@@ -3,7 +3,7 @@ from pygame import mixer
 
 pygame.init()
 
-GAME_FONT = pygame.font.SysFont("arial.tff", 24, bold=False, italic=False)
+all_fonts = pygame.font.get_fonts()
 
 class button:
     def __init__(self, x, y, width, height, color, command): #word
@@ -43,13 +43,21 @@ pause_c = (131, 63, 180)
 
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
-# f = open('song_list.txt')
-# for element in f:
-    # titles = element.split(';')
+f = open('List :D.txt')
+for element in f:
+    titles = element.split(';')
     #for titles in element:
     #text_surface = GAME_FONT.render(titles[0], True, (0, 0, 0))
     #window.blit(text_surface, (200, 200))
-    # print(titles[0])
+    print(titles[0])
+
+# colors
+bc1 = (147, 133, 255)
+bc2 = (185, 148, 255)
+bc3 = (222, 157, 255)
+bc4 = (245, 168, 255)
+unpause_c = (255, 255, 255)
+pause_c = (237, 237, 237)
 
 gurenge_button = button(50,25,100,50, bc1, "demon")
 sweater_weather_button = button(50, 100, 100, 50, bc2, "sweater")
@@ -60,23 +68,82 @@ unpause_button = button(275, 325, 50, 50, unpause_c, "unpause")
 
 SweaterImg = pygame.image.load('Sweater Weather Cover.jpg')
 
+
 drawable = [gurenge_button, sweater_weather_button, riptide_button, worth_it_button, pause_button, unpause_button]
 buttons = [gurenge_button, sweater_weather_button, riptide_button, worth_it_button, pause_button, unpause_button]
 
 run = True
 
 pygame.display.set_caption('Welcome to The Jukebox')
+def make_font(fonts, size):
+    available = pygame.font.get_fonts()
+    # get_fonts() returns a list of lowercase spaceless font names
+    choices = map(lambda x:x.lower().replace(' ', ''), fonts)
+    for choice in choices:
+        if choice in available:
+            return pygame.font.SysFont(choice, size)
+    return pygame.font.Font(None, size)
+    
+_cached_fonts = {}
+def get_font(font_preferences, size):
+    global _cached_fonts
+    key = str(font_preferences) + '|' + str(size)
+    font = _cached_fonts.get(key, None)
+    if font == None:
+        font = make_font(font_preferences, size)
+        _cached_fonts[key] = font
+    return font
+
+_cached_text = {}
+def create_text(text, fonts, size, color):
+    global _cached_text
+    key = '|'.join(map(str, (fonts, size, color, text)))
+    image = _cached_text.get(key, None)
+    if image == None:
+        font = get_font(fonts, size)
+        image = font.render(text, True, color)
+        _cached_text[key] = image
+    return image
+
+pygame.init()
+screen = pygame.display.set_mode((640, 480))
+clock = pygame.time.Clock()
+done = False
+
+font_preferences = [
+        "Comic Sans",
+        "Arial",
+        "Papyrus",
+        "Comic Sans MS"]
+
+text = create_text("Jukebox", font_preferences, 50, (250, 250, 250))
+song1 = create_text("Gurenge", font_preferences, 20, (250, 250, 250))
+song2 = create_text("Sweater Weather", font_preferences, 13, (250, 250, 250))
+song3 = create_text("Riptide", font_preferences, 20, (250, 250, 250))
+song4 = create_text("Worth It", font_preferences, 20, (250, 250, 250))
+
 
 def draw():
     window.fill((225, 227, 231))
     for item in drawable:
         item.draw()
-        text_surface = GAME_FONT.render("Jukebox", True, (0, 0, 0))
-        window.blit(text_surface, (218, 4))
-    pygame.display.update()
+        screen.blit(text,
+        (315 - text.get_width() // 2, 10 - text.get_height() // 5))
+        screen.blit(song1,
+        (100 - song1.get_width() // 2, 40 - song1.get_height() // 5))
+        screen.blit(song2,
+        (100 - song2.get_width() // 2, 120 - song2.get_height() // 5))
+        screen.blit(song3,
+        (100 - song3.get_width() // 2, 191 - song3.get_height() // 5))
+        screen.blit(song4,
+        (100 - song4.get_width() // 2, 267 - song4.get_height() // 5))
+
+        
+    pygame.display.flip()
 
 while run:
     for event in pygame.event.get():
+
         if event.type == pygame.QUIT:
             run = False
         elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -85,7 +152,7 @@ while run:
                 if item.click(mousepos[0], mousepos[1]):
                     if item.command == "demon":
                         mixer.init()
-                        mixer.music.load("Gurenge (TV Version).wav")
+                        mixer.music.load("Demon Slayer - Kimetsu no Yaiba - OP Full 'Gurenge'.wav")
                         mixer.music.set_volume(0.7)
                         mixer.music.play()
                     elif item.command == "sweater":
@@ -96,10 +163,6 @@ while run:
                         mixer.music.load("Sweater Weather.wav")
                         mixer.music.set_volume(0.7)
                         mixer.music.play()
-                        #pygame.image.load(r'C:Sweater Weather Cover.jpg', (300, 100))
-                        #while True:
-                            #window.fill(green)
-                            #window.blit(SweaterImg,(0,0))                        
                     elif item.command == "riptide":
                         mixer.init()
                         mixer.music.load("Riptide.wav")
