@@ -33,7 +33,7 @@ blue = (0,0,255)
 
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
-f = open('List :D.txt')
+f = open('List :D')
 for element in f:
     titles = element.split(';')
     #for titles in element:
@@ -41,7 +41,7 @@ for element in f:
     #window.blit(text_surface, (200, 200))
     print(titles[0])
 
-# colors
+# colors 
 bc1 = (147, 133, 255)
 bc2 = (185, 148, 255)
 bc3 = (222, 157, 255)
@@ -49,12 +49,12 @@ bc4 = (245, 168, 255)
 unpause_c = (255, 255, 255)
 pause_c = (237, 237, 237)
 
-gurenge_button = button(50,25,100,50, (100, 232, 159), "demon")
-sweater_weather_button = button(50, 100, 100, 50, (108, 109, 112), "sweater")
-riptide_button = button(50, 175, 100, 50, (157, 12, 12), "riptide")
-worth_it_button = button(50, 250, 100, 50, (233, 169, 49), "worth")
-pause_button = button(175, 325, 50, 50, red, "pause")
-unpause_button = button(275, 325, 50, 50, blue, "unpause")
+gurenge_button = button(50,25,100,50, bc1, "demon")
+sweater_weather_button = button(50, 100, 100, 50, bc2, "sweater")
+riptide_button = button(50, 175, 100, 50, bc3, "riptide")
+worth_it_button = button(50, 250, 100, 50, bc4, "worth")
+pause_button = button(175, 325, 50, 50, pause_c, "pause")
+unpause_button = button(275, 325, 50, 50, unpause_c, "unpause")
 
 SweaterImg = pygame.image.load('Sweater Weather Cover.jpg')
 
@@ -106,11 +106,7 @@ font_preferences = [
         "Papyrus",
         "Comic Sans MS"]
 
-text = create_text("Jukebox", font_preferences, 50, (250, 250, 250))
-song1 = create_text("Gurenge", font_preferences, 20, (250, 250, 250))
-song2 = create_text("Sweater Weather", font_preferences, 13, (250, 250, 250))
-song3 = create_text("Riptide", font_preferences, 20, (250, 250, 250))
-song4 = create_text("Worth It", font_preferences, 20, (250, 250, 250))
+text = create_text("Jukebox", font_preferences, 50, (0, 128, 0))
 
 
 def draw():
@@ -119,14 +115,6 @@ def draw():
         item.draw()
         screen.blit(text,
         (315 - text.get_width() // 2, 10 - text.get_height() // 5))
-        screen.blit(song1,
-        (100 - song1.get_width() // 2, 40 - song1.get_height() // 5))
-        screen.blit(song2,
-        (100 - song2.get_width() // 2, 120 - song2.get_height() // 5))
-        screen.blit(song3,
-        (100 - song3.get_width() // 2, 191 - song3.get_height() // 5))
-        screen.blit(song4,
-        (100 - song4.get_width() // 2, 267 - song4.get_height() // 5))
 
         
     pygame.display.flip()

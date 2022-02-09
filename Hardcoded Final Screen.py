@@ -15,7 +15,7 @@ class button:
         self.command = command
         #self.word = word
     def draw(self):
-        pygame.draw.rect(window, self.color, (self.x, self.y, self.width, self.height))#, self.word)
+        pygame.draw.rect(DISPLAY, self.color, (self.x, self.y, self.width, self.height))#, self.word)
         #pygame.word.rect()
     def click(self, mousex, mousey):
         if self.x <= mousex <= self.x + self.width and self.y <= mousey <= self.y + self.height:
@@ -24,6 +24,18 @@ class button:
     def text(self):
         pass
 
+Gimg = pygame.image.load('Gurenge Cover.jpg')
+Gimg = pygame.transform.scale(Gimg, (250,250))
+SWimg = pygame.image.load('SweaterWeatherCover.jpg')
+SWimg = pygame.transform.scale(SWimg, (250,250))
+Rimg = pygame.image.load('Riptide Cover.jpg')
+Rimg = pygame.transform.scale(Rimg, (250,250))
+WIimg = pygame.image.load('Worth It Album.jpeg')
+WIimg = pygame.transform.scale(WIimg, (250,250))
+White = pygame.image.load('225, 227, 231.png')
+White = pygame.transform.scale(White, (250, 250))
+image = White
+
 WIDTH = 500
 HEIGHT = 400
 
@@ -31,9 +43,9 @@ green = (0,255,0)
 red = (255,0,0)
 blue = (0,0,255)
 
-window = pygame.display.set_mode((WIDTH, HEIGHT))
+DISPLAY = pygame.display.set_mode((WIDTH, HEIGHT))
 
-f = open('List :D.txt')
+f = open('song_list.txt')
 for element in f:
     titles = element.split(';')
     #for titles in element:
@@ -41,23 +53,19 @@ for element in f:
     #window.blit(text_surface, (200, 200))
     print(titles[0])
 
-# colors
 bc1 = (147, 133, 255)
 bc2 = (185, 148, 255)
 bc3 = (222, 157, 255)
 bc4 = (245, 168, 255)
-unpause_c = (255, 255, 255)
-pause_c = (237, 237, 237)
+unpause_c = (225, 227, 231)
+pause_c = (225, 227, 231)
 
-gurenge_button = button(50,25,100,50, (100, 232, 159), "demon")
-sweater_weather_button = button(50, 100, 100, 50, (108, 109, 112), "sweater")
-riptide_button = button(50, 175, 100, 50, (157, 12, 12), "riptide")
-worth_it_button = button(50, 250, 100, 50, (233, 169, 49), "worth")
-pause_button = button(175, 325, 50, 50, red, "pause")
-unpause_button = button(275, 325, 50, 50, blue, "unpause")
-
-SweaterImg = pygame.image.load('Sweater Weather Cover.jpg')
-
+gurenge_button = button(50,25,100,50, bc1, "demon")
+sweater_weather_button = button(50, 100, 100, 50, bc2, "sweater")
+riptide_button = button(50, 175, 100, 50, bc3, "riptide")
+worth_it_button = button(50, 250, 100, 50, bc4, "worth")
+pause_button = button(175, 325, 50, 50, pause_c, "pause")
+unpause_button = button(275, 325, 50, 50, unpause_c, "unpause")
 
 drawable = [gurenge_button, sweater_weather_button, riptide_button, worth_it_button, pause_button, unpause_button]
 buttons = [gurenge_button, sweater_weather_button, riptide_button, worth_it_button, pause_button, unpause_button]
@@ -96,12 +104,11 @@ def create_text(text, fonts, size, color):
     return image
 
 pygame.init()
-screen = pygame.display.set_mode((640, 480))
 clock = pygame.time.Clock()
 done = False
 
 font_preferences = [
-        "Comic Sans",
+        "Times",
         "Arial",
         "Papyrus",
         "Comic Sans MS"]
@@ -112,28 +119,30 @@ song2 = create_text("Sweater Weather", font_preferences, 13, (250, 250, 250))
 song3 = create_text("Riptide", font_preferences, 20, (250, 250, 250))
 song4 = create_text("Worth It", font_preferences, 20, (250, 250, 250))
 
+play = pygame.image.load('Play Button Icon.png')
+play = pygame.transform.scale(play, (50, 50))
+pause = pygame.image.load('Pause Button Icon.png')
+pause = pygame.transform.scale(pause, (50, 50))
 
 def draw():
-    window.fill((225, 227, 231))
     for item in drawable:
         item.draw()
-        screen.blit(text,
+        DISPLAY.blit(text,
         (315 - text.get_width() // 2, 10 - text.get_height() // 5))
-        screen.blit(song1,
+        DISPLAY.blit(song1,
         (100 - song1.get_width() // 2, 40 - song1.get_height() // 5))
-        screen.blit(song2,
+        DISPLAY.blit(song2,
         (100 - song2.get_width() // 2, 120 - song2.get_height() // 5))
-        screen.blit(song3,
+        DISPLAY.blit(song3,
         (100 - song3.get_width() // 2, 191 - song3.get_height() // 5))
-        screen.blit(song4,
+        DISPLAY.blit(song4,
         (100 - song4.get_width() // 2, 267 - song4.get_height() // 5))
-
-        
+    DISPLAY.blit(play, (275, 325))
+    DISPLAY.blit(pause, (175, 325))
     pygame.display.flip()
 
 while run:
     for event in pygame.event.get():
-
         if event.type == pygame.QUIT:
             run = False
         elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -142,34 +151,34 @@ while run:
                 if item.click(mousepos[0], mousepos[1]):
                     if item.command == "demon":
                         mixer.init()
-                        mixer.music.load("Demon Slayer - Kimetsu no Yaiba - OP Full 'Gurenge'.wav")
+                        mixer.music.load("Gurenge (TV Version).wav")
                         mixer.music.set_volume(0.7)
                         mixer.music.play()
+                        image = Gimg
                     elif item.command == "sweater":
                         mixer.init()
-                        #window.fill(green)
-                        #window.blit(SweaterImg,(WIDTH/2, HEIGHT/2))
-                        pygame.display.flip()
                         mixer.music.load("Sweater Weather.wav")
                         mixer.music.set_volume(0.7)
                         mixer.music.play()
+                        image = SWimg
                     elif item.command == "riptide":
                         mixer.init()
                         mixer.music.load("Riptide.wav")
                         mixer.music.set_volume(0.7)
                         mixer.music.play()
+                        image = Rimg
                     elif item.command == "worth":
                         mixer.init()
                         mixer.music.load("Worth It.wav")
                         mixer.music.set_volume(0.7)
                         mixer.music.play()
+                        image = WIimg
                     if item.command == "pause":
                         pygame.mixer.music.pause()
                     if item.command == "unpause":
                         pygame.mixer.music.unpause()
+        DISPLAY.fill((225, 227, 231))
+        DISPLAY.blit(image, (200, 70))
     draw()
-    
 
-    
-    
 pygame.quit()
