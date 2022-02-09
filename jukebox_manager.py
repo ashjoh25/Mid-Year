@@ -1,6 +1,6 @@
 import pygame
 
-from jukebox_object import ButtonRoster
+from button_object import ButtonRoster
 from jukebox_screen import Screen
 
 class Jukebox_Manager (object):
@@ -40,7 +40,9 @@ class Jukebox_Manager (object):
                         if item.click(mousepos[0], mousepos[1]) and item.command >= 0:
                             
                             item.play(command = item.command, roster = self.roster.buttons_list)
-            
+                            item.place_image(command = item.command, roster = self.roster.buttons_list, window = self.window)
+                            
+            pygame.display.update()
 
 def main():
 
