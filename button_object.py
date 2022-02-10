@@ -36,6 +36,7 @@ class Button (object):
         image = pygame.image.load(str(roster[command].image))
         image = pygame.transform.scale(image, (250,250))
         window.blit(image, (200, 51))
+        pygame.display.update()
 
     def button_text(self, text):
         pass

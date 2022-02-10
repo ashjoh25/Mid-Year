@@ -41,8 +41,7 @@ class Jukebox_Manager (object):
                             
                             item.play(command = item.command, roster = self.roster.buttons_list)
                             item.place_image(command = item.command, roster = self.roster.buttons_list, window = self.window)
-                            
-            pygame.display.update()
+            
 
 def main():
 

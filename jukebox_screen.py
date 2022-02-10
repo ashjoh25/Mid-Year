@@ -26,6 +26,8 @@ class Screen (object):
 
             item.draw(window = self.window)
             pygame.display.update()
+        
+       
 
       
     
