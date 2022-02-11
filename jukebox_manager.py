@@ -1,6 +1,6 @@
 import pygame
 
-from jukebox_object import ButtonRoster
+from button_object import ButtonRoster
 from jukebox_screen import Screen
 
 class Jukebox_Manager (object):
@@ -37,10 +37,16 @@ class Jukebox_Manager (object):
                     
                     for item in self.roster.buttons_list:
                         
-                        if item.click(mousepos[0], mousepos[1]) and item.command >= 0:
+                        if item.click(mousepos[0], mousepos[1]):
                             
-                            item.play(command = item.command, roster = self.roster.buttons_list)
-            
+                            if item.command >= 0:
+                                item.play(command = item.command, roster = self.roster.buttons_list)
+
+                            elif item.command == "pause":
+                                pygame.mixer.music.pause()
+
+                            elif item.command == "unpause":
+                                pygame.mixer.music.unpause()
 
 def main():
 
