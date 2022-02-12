@@ -1,5 +1,7 @@
 import pygame 
-class Screen (object):
+from button_object import StandardButton, PlayPauseButton
+
+class SongScreen (object):
 
     def __init__ (self, window, roster):
         
@@ -22,9 +24,25 @@ class Screen (object):
         image = White   
         self.window.blit(image, (200, 70))
 
-        for item in self.roster.buttons_list:
+        play_img = pygame.image.load('Play Button Icon.png')
+        play_img = pygame.transform.scale(play_img, (50, 50))
+        pause_img = pygame.image.load('Pause Button Icon.png')
+        pause_img = pygame.transform.scale(pause_img, (50, 50))
+        
+        pause_button = StandardButton(175, 325, 50, 50, (225, 227, 231), "pause")
+        unpause_button = StandardButton(275, 325, 50, 50, (225, 227, 231), "unpause")
 
-            item.draw(window = self.window)
+        pause_button = PlayPauseButton(pause_button)
+        unpause_button = PlayPauseButton(unpause_button)
+
+        self.roster.song_buttons_list.append(pause_button)
+        self.roster.song_buttons_list.append(unpause_button)
+
+        for item in self.roster.song_buttons_list:
+
+            item.standard_button.draw(window = self.window)
+            self.window.blit(play_img, (275, 325))
+            self.window.blit(pause_img, (175, 325))
             pygame.display.update()
         
        

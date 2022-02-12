@@ -1,7 +1,7 @@
 import pygame
 
-from button_object import ButtonRoster
-from jukebox_screen import Screen
+from button_object import SongButtonRoster
+from jukebox_screen import SongScreen
 
 class Jukebox_Manager (object):
 
@@ -12,16 +12,16 @@ class Jukebox_Manager (object):
         self.roster = None
         self.run = True
 
-    def setup_screen(self):
+    def setup_song_screen(self):
         
         pygame.display.set_caption('Welcome to The Jukebox!')
-        self.roster = ButtonRoster ("song_list.txt")
-        self.current_screen = Screen (window = self.window, roster = self.roster)
+        self.roster = SongButtonRoster ("song_list.txt")
+        self.current_screen = SongScreen (window = self.window, roster = self.roster)
 
 
     def loop(self):
         
-        self.setup_screen()
+        self.setup_song_screen()
 
         while self.run == True:
 
@@ -35,14 +35,21 @@ class Jukebox_Manager (object):
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     mousepos = pygame.mouse.get_pos()
                     
-                    for item in self.roster.buttons_list:
+                    for item in self.roster.song_buttons_list:
                         
-                        if item.click(mousepos[0], mousepos[1]) and item.command >= 0:
+                        if item.standard_button.click(mousepos[0], mousepos[1]):
+                        
+                            if len(item.standard_button.command) == 1:
                             
-                            item.play(command = item.command, roster = self.roster.buttons_list)
-                            item.place_image(command = item.command, roster = self.roster.buttons_list, window = self.window)
-            
+                                item.play(command = int(item.standard_button.command), roster = self.roster.song_buttons_list)
+                                item.place_image(command = int(item.standard_button.command), roster = self.roster.song_buttons_list, window = self.window)
+                            
+                            elif item.standard_button.command == "pause":
+                                item.pause()
 
+                            elif item.standard_button.command == "unpause":
+                                item.unpause()
+                                
 def main():
 
     pygame.init()
@@ -50,4 +57,3 @@ def main():
     jukebox.loop()
 
 main()
-    
