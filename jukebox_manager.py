@@ -39,14 +39,9 @@ class Jukebox_Manager (object):
                         
                         if item.click(mousepos[0], mousepos[1]):
                             
-                            if item.command >= 0:
-                                item.play(command = item.command, roster = self.roster.buttons_list)
-
-                            elif item.command == "pause":
-                                pygame.mixer.music.pause()
-
-                            elif item.command == "unpause":
-                                pygame.mixer.music.unpause()
+                            item.play(command = item.command, roster = self.roster.buttons_list)
+                            item.place_image(command = item.command, roster = self.roster.buttons_list, window = self.window)
+            
 
 def main():
 

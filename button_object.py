@@ -3,7 +3,7 @@ from pygame import mixer
 
 class Button (object):
 
-    def __init__(self, x, y, width, height, color, index, text, music): 
+    def __init__(self, x, y, width, height, color, index, text, music, image): 
 
         self.x = x
         self.y = y
@@ -13,6 +13,7 @@ class Button (object):
         self.command = index
         self.text = text
         self.music = music
+        self.image = image 
 
 
 
@@ -31,6 +32,13 @@ class Button (object):
         mixer.music.load(str(roster[command].music))
         mixer.music.set_volume(0.7)
         mixer.music.play()
+    
+    def place_image(self, command, roster, window):
+
+        image = pygame.image.load(str(roster[command].image))
+        image = pygame.transform.scale(image, (250,250))
+        window.blit(image, (200, 51))
+        pygame.display.update()
 
 #    def play_pause(self, x, y, width, height, color, command):
 #        self.x = x
@@ -110,7 +118,7 @@ class ButtonRoster (object):
 
             line = line.strip()
             line_elements = line.split(';')
-            b = Button(50, y, 100, 50, newButtonColor, index, line_elements[0], line_elements[1])
+            b = Button(50, y, 100, 50, newButtonColor, index, line_elements[0], line_elements[1], line_elements[2])
             self.buttons_list.append(b)
 
             y += 75 

@@ -24,13 +24,13 @@ class button:
     def text(self):
         pass
 
-Gimg = pygame.image.load('Gurenge Cover.jpg')
+Gimg = pygame.image.load('gurenge_cover.jpg')
 Gimg = pygame.transform.scale(Gimg, (250,250))
-SWimg = pygame.image.load('SweaterWeatherCover.jpg')
+SWimg = pygame.image.load('sweater_weather_cover.jpg')
 SWimg = pygame.transform.scale(SWimg, (250,250))
-Rimg = pygame.image.load('Riptide Cover.jpg')
+Rimg = pygame.image.load('riptide_cover.jpg')
 Rimg = pygame.transform.scale(Rimg, (250,250))
-WIimg = pygame.image.load('Worth It Album.jpeg')
+WIimg = pygame.image.load('worth_it_cover.jpeg')
 WIimg = pygame.transform.scale(WIimg, (250,250))
 White = pygame.image.load('225, 227, 231.png')
 White = pygame.transform.scale(White, (250, 250))
