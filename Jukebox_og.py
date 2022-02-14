@@ -43,7 +43,7 @@ pause_c = (131, 63, 180)
 
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
-f = open('List :D.txt')
+f = open('song_list.txt')
 for element in f:
     titles = element.split(';')
     #for titles in element:
