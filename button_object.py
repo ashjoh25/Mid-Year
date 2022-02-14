@@ -1,9 +1,9 @@
 import pygame
 from pygame import mixer
 
-class Button (object):
+class StandardButton (object):
 
-    def __init__(self, x, y, width, height, color, index, text, music, image): 
+    def __init__(self, x, y, width, height, color, index): 
 
         self.x = x
         self.y = y
@@ -11,9 +11,6 @@ class Button (object):
         self.height = height
         self.color = color
         self.command = index
-        self.text = text
-        self.music = music
-        self.image = image 
 
 
 
@@ -24,7 +21,17 @@ class Button (object):
 
         if self.x <= mousex <= self.x + self.width and self.y <= mousey <= self.y + self.height:
             return True
+            
         return False
+
+class SongButton (object):
+
+    def __init__(self, button, music, image, text):
+
+        self.standard_button = button
+        self.music = music
+        self.image = image
+        self.text = text
 
     def play(self, command, roster):
 
@@ -40,63 +47,27 @@ class Button (object):
         window.blit(image, (200, 51))
         pygame.display.update()
 
-#    def play_pause(self, x, y, width, height, color, command):
-#        self.x = x
-#        self.y = y
-#        self.width = width
-#        self.height = height
-#        self.color = color
-#        self.command = command
-#        play_button = Button (175, 325, 50, 50, (255, 255, 255), mixer.music.play())
-#        pause_button = Button(275, 325, 50, 50, (255, 255, 255), mixer.music.pause())
-#        play = pygame.image.load('Play Button Icon.png')
-#        play = pygame.transform.scale(play, (50, 50))
-#        pause = pygame.image.load('Pause Button Icon.png')
-#        pause = pygame.transform.scale(pause, (50, 50))
-
-    def button_text(self, text):
+    def button_text(self):
         pass
 
-class pausePlaybutton(object):
+class PlayPauseButton (object):
 
-    def __init__(self, x, y, width, height, color, command) :
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        self.color = color
-        self.command = command
-    
-    def draw(self, window):
-        pygame.draw.rect(window, self.color, (self.x, self.y, self.width, self.height))#, self.word)
+    def __init__(self, button):
 
-    def click(self, mousex, mousey):
+        self.standard_button = button 
 
-        if self.x <= mousex <= self.x + self.width and self.y <= mousey <= self.y + self.height:
-            return True
-        return False
+    def pause(self):
+        pygame.mixer.music.pause()
 
-    #def playPause(self):
-        
-        #play_button = Button(175, 325, 50, 50, (255, 255, 255), "play")
-        #pause_button = Button(275, 325, 50, 50, (255, 255, 255), "pause")
-        #play = pygame.image.load('Play Button Icon.png')
-        #play = pygame.transform.scale(play, (50, 50))
-        #pause = pygame.image.load('Pause Button Icon.png')
-        #pause = pygame.transform.scale(pause, (50, 50))
+    def unpause(self):
+        pygame.mixer.music.unpause()
 
-        #drawable = [play_button, pause_button]
 
-        #for item in drawable:
-            #item.draw()
-            #self.window.blit(play, (275, 325))
-            #self.window.blit(pause, (175, 325))
-
-class ButtonRoster (object):
+class SongButtonRoster (object):
 
     def __init__(self, file_name):
 
-        self.buttons_list = []
+        self.song_buttons_list = []
         y = 25
         c = 0
         index = 0 
@@ -118,8 +89,9 @@ class ButtonRoster (object):
 
             line = line.strip()
             line_elements = line.split(';')
-            b = Button(50, y, 100, 50, newButtonColor, index, line_elements[0], line_elements[1], line_elements[2])
-            self.buttons_list.append(b)
+            b = StandardButton(50, y, 100, 50, newButtonColor, str(index))
+            b = SongButton(button = b, music = line_elements[1], image = line_elements[2], text = line_elements[0])
+            self.song_buttons_list.append(b)
 
             y += 75 
             index += 1
