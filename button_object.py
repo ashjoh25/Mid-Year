@@ -3,7 +3,7 @@ from pygame import mixer
 
 class StandardButton (object):
 
-    def __init__(self, x, y, width, height, color, index): 
+    def __init__(self, x, y, width, height, color, index, text): 
 
         self.x = x
         self.y = y
@@ -11,8 +11,7 @@ class StandardButton (object):
         self.height = height
         self.color = color
         self.command = index
-
-
+        self.text = text
 
     def draw(self, window):
         pygame.draw.rect(window, self.color, (self.x, self.y, self.width, self.height))#, self.word)
@@ -24,14 +23,16 @@ class StandardButton (object):
             
         return False
 
+    def button_text(self):
+        pass
+
 class SongButton (object):
 
-    def __init__(self, button, music, image, text):
+    def __init__(self, button, music, image):
 
         self.standard_button = button
         self.music = music
         self.image = image
-        self.text = text
 
     def play(self, command, roster):
 
@@ -46,9 +47,6 @@ class SongButton (object):
         image = pygame.transform.scale(image, (250,250))
         window.blit(image, (200, 51))
         pygame.display.update()
-
-    def button_text(self):
-        pass
 
 class PlayPauseButton (object):
 
@@ -89,8 +87,8 @@ class SongButtonRoster (object):
 
             line = line.strip()
             line_elements = line.split(';')
-            b = StandardButton(50, y, 100, 50, newButtonColor, str(index))
-            b = SongButton(button = b, music = line_elements[1], image = line_elements[2], text = line_elements[0])
+            b = StandardButton(50, y, 100, 50, newButtonColor, str(index), text = line_elements[0])
+            b = SongButton(button = b, music = line_elements[1], image = line_elements[2])
             self.song_buttons_list.append(b)
 
             y += 75 
