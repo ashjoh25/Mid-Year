@@ -30,8 +30,8 @@ class SongScreen (object):
         pause_img = pygame.image.load('Pause Button Icon.png')
         pause_img = pygame.transform.scale(pause_img, (50, 50))
         
-        pause_button = StandardButton(175, 325, 50, 50, (225, 227, 231), "pause")
-        unpause_button = StandardButton(275, 325, 50, 50, (225, 227, 231), "unpause")
+        pause_button = StandardButton(175, 325, 50, 50, (225, 227, 231), "pause", text = None)
+        unpause_button = StandardButton(275, 325, 50, 50, (225, 227, 231), "unpause", text = None)
 
         pause_button = PlayPauseButton(pause_button)
         unpause_button = PlayPauseButton(unpause_button)
@@ -46,33 +46,6 @@ class SongScreen (object):
             self.window.blit(pause_img, (175, 325))
             pygame.display.update()
         
-       
-
-        self.window.blit(play, (275, 325))
-        self.window.blit(pause, (175, 325))
-
-    #def play_pause(self, x, y, width, height, color, command):
-
-        
-        #self.x = x
-        #self.y = y
-        #self.width = width
-        #self.height = height
-        #self.color = color
-        #self.command = command
-        #play_button = Button(175, 325, 50, 50, (255, 255, 255), "play")
-        #pause_button = Button(275, 325, 50, 50, (255, 255, 255), "pause")
-        #play = pygame.image.load('Play Button Icon.png')
-        #play = pygame.transform.scale(play, (50, 50))
-        #pause = pygame.image.load('Pause Button Icon.png')
-        #pause = pygame.transform.scale(pause, (50, 50))
-
-        #drawable = [play_button, pause_button]
-
-        #for item in drawable:
-            #item.draw()
-            #self.window.blit(play, (275, 325))
-            #self.window.blit(pause, (175, 325))
 
       
     
