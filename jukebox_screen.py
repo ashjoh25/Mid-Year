@@ -45,7 +45,35 @@ class SongScreen (object):
             self.window.blit(play_img, (275, 325))
             self.window.blit(pause_img, (175, 325))
             pygame.display.update()
+
+def loop (self):
         
+        while self.run == True:
+
+            for event in pygame.event.get():
+
+                if event.type == pygame.QUIT:
+                    
+                    self.run = False
+                    pygame.quit()
+
+                elif event.type == pygame.MOUSEBUTTONDOWN:
+                    mousepos = pygame.mouse.get_pos()
+                    
+                    for item in self.roster.song_buttons_list:
+                        
+                        if item.standard_button.click(mousepos[0], mousepos[1]):
+                        
+                            if len(item.standard_button.command) == 1:
+                            
+                                item.play(command = int(item.standard_button.command), roster = self.roster.song_buttons_list)
+                                item.place_image(command = int(item.standard_button.command), roster = self.roster.song_buttons_list, window = self.window)
+                            
+                            elif item.standard_button.command == "pause":
+                                item.pause()
+
+                            elif item.standard_button.command == "unpause":
+                                item.unpause()
 
       
     
