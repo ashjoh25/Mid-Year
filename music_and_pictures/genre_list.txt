@@ -1,0 +1,4 @@
+Jeannelle's Picks;jeannelle_list.txt
+Ashley's Picks;ashley_list.txt
+Morgan's Picks;morgan_list.txt
+Vrielle's Picks;vrielle_list.txt

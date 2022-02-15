@@ -22,8 +22,8 @@ class StandardButton (object):
             return True
             
         return False
-
-    def button_text(self):
+    
+    def text(self):
         pass
 
 class SongButton (object):
@@ -60,10 +60,16 @@ class PlayPauseButton (object):
     def unpause(self):
         pygame.mixer.music.unpause()
 
+class GenreButton (object):
+
+    def __init__(self, button, file_name):
+
+        self.standard_button = button 
+        self.file_name = file_name
 
 class SongButtonRoster (object):
 
-    def __init__(self, file_name):
+    def __init__(self, file_name): # color (t, u, z)
 
         self.song_buttons_list = []
         y = 25
@@ -87,10 +93,46 @@ class SongButtonRoster (object):
 
             line = line.strip()
             line_elements = line.split(';')
-            b = StandardButton(50, y, 100, 50, newButtonColor, str(index), text = line_elements[0])
+            b = StandardButton(50, y, 100, 50, newButtonColor, str(index), line_elements[0])
             b = SongButton(button = b, music = line_elements[1], image = line_elements[2])
             self.song_buttons_list.append(b)
 
             y += 75 
+            index += 1
+
+class GenreButtonRoster (object):
+
+    def __init__(self, file_name):
+
+        self.genre_buttons_list = []
+        x = 20
+        y = 25
+        c = 0
+        index = 0 
+        f = open(file_name)
+
+        for line in f:
+            c += 1
+
+            # say if button added or +1 in button counter, change the color
+            # make each number (x, u, z) a variable that will then change or get subtracted
+            t = 231
+            u = 0
+            z = 255
+
+            if c + 1:
+                t += 10
+                u += 20
+                newButtonColor = (int(t), int(y), int(z))
+
+            line = line.strip()
+            line_elements = line.split(';')
+
+            b = StandardButton(x, 240, 100, 100, newButtonColor, str(index), line_elements[0])
+            b = GenreButton(b, line_elements[1])
+
+            self.genre_buttons_list.append(b)
+
+            x += 120
             index += 1
 
