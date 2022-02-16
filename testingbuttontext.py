@@ -75,10 +75,10 @@ class button():
 
 
 
-again = button(75, 200, 'Gurenge')
-quit = button(325, 200, 'Sweater Weather')
-down = button(75, 350, 'Riptide')
-up = button(325, 350, 'Worth It')
+gurenge = button(75, 200, 'Gurenge')
+sweater_weather = button(325, 200, 'Sweater Weather')
+riptide = button(75, 350, 'Riptide')
+worth_it = button(325, 350, 'Worth It')
 
 
 run = True
@@ -86,15 +86,15 @@ while run:
 
 	screen.fill(bg)
 
-	if again.draw_button():
+	if gurenge.draw_button():
 		print('Gurenge')
 		counter = 0
-	if quit.draw_button():
+	if sweater_weather.draw_button():
 		print('Sweater Weather')
-	if up.draw_button():
+	if riptide.draw_button():
 		print('Riptide')
 		counter += 1
-	if down.draw_button():
+	if worth_it.draw_button():
 		print('Worth It')
 		counter -= 1
 
