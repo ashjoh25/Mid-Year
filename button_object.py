@@ -94,6 +94,15 @@ class GenreButton (object):
         self.standard_button = button 
         self.file_name = file_name
 
+class BackButton (object):
+
+    def __init__(self, button):
+
+        self.standard_button = button 
+
+    def stop (self):
+        pygame.mixer.music.stop()
+
 class SongButtonRoster (object):
 
     def __init__(self, file_name): # color (t, u, z)
@@ -104,19 +113,21 @@ class SongButtonRoster (object):
         index = 0 
         f = open(file_name)
 
+        t = 231
+        u = 0
+        z = 255
+
         for line in f:
             c += 1
 
             # say if button added or +1 in button counter, change the color
             # make each number (x, u, z) a variable that will then change or get subtracted
-            x = 231
-            u = 0
-            z = 255
 
             if c + 1:
-                x += 10
-                u += 20
-                newButtonColor = (int(x), int(y), int(z))
+                t += 5
+                u += 55
+        
+                newButtonColor = (int(t), int(u), int(z))
 
             line = line.strip()
             line_elements = line.split(';')
