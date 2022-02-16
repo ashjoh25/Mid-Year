@@ -7,12 +7,14 @@ class SongScreen (object):
         
         self.GAME_FONT = pygame.font.SysFont("arial.tff", 24, bold = False, italic = False)
 
+        self.run = True
         self.window = window
         pygame.display.set_caption('Welcome to The Jukebox')
         self.window.fill((225, 227, 231))
         self.roster = roster
 
         self.create_widgets()
+        self.loop()
 
     def create_widgets(self):
         
@@ -46,7 +48,7 @@ class SongScreen (object):
             self.window.blit(pause_img, (175, 325))
             pygame.display.update()
 
-def loop (self):
+    def loop (self):
         
         while self.run == True:
 
