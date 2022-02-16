@@ -1,7 +1,7 @@
 import pygame
 
 from button_object import SongButtonRoster, GenreButtonRoster
-from jukebox_screen import SongScreen
+from song_screen import SongScreen
 from genre_screen import GenreScreen
 
 class Jukebox_Manager (object):
@@ -20,7 +20,7 @@ class Jukebox_Manager (object):
     def setup_song_screen(self, file_name):
         
         self.roster = SongButtonRoster (file_name)
-        SongScreen (window = self.window, roster = self.roster)
+        SongScreen (window = self.window, roster = self.roster, callback_on_selected = self.setup_genre_screen)
                               
 def main():
 

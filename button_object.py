@@ -67,6 +67,15 @@ class GenreButton (object):
         self.standard_button = button 
         self.file_name = file_name
 
+class BackButton (object):
+
+    def __init__(self, button):
+
+        self.standard_button = button 
+
+    def stop (self):
+        pygame.mixer.music.stop()
+
 class SongButtonRoster (object):
 
     def __init__(self, file_name): # color (t, u, z)
