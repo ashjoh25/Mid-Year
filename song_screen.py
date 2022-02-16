@@ -3,7 +3,7 @@ from button_object import StandardButton, PlayPauseButton, BackButton
 
 class SongScreen (object):
 
-    def __init__ (self, window, roster, callback_on_selected):
+    def __init__ (self, window, roster, callback_on_selected, text):
         
         self.GAME_FONT = pygame.font.SysFont("arial.tff", 24, bold = False, italic = False)
 
@@ -11,6 +11,7 @@ class SongScreen (object):
         self.window = window
         self.roster = roster
         self.callback_on_selected = callback_on_selected
+        self.text = text 
         self.run = True
 
         self.create_widgets()
@@ -18,11 +19,11 @@ class SongScreen (object):
 
     def create_widgets(self):
         
-        pygame.display.set_caption('Welcome to The Jukebox')
+        pygame.display.set_caption(self.text)
         self.window.fill((225, 227, 231))
 
         text_surface = self.GAME_FONT.render("Jukebox", True, (0, 0, 0))
-        self.window.blit(text_surface, (218, 4))
+        self.window.blit(text_surface, (215, 6))
 
         White = pygame.image.load('225, 227, 231.png')
         White = pygame.transform.scale(White, (250, 250))

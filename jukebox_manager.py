@@ -17,10 +17,10 @@ class Jukebox_Manager (object):
         self.roster = GenreButtonRoster ("genre_list.txt")
         GenreScreen (window = self.window, roster = self.roster, callback_on_selected = self.setup_song_screen)
 
-    def setup_song_screen(self, file_name):
+    def setup_song_screen(self, file_name, color_theme, text):
         
-        self.roster = SongButtonRoster (file_name)
-        SongScreen (window = self.window, roster = self.roster, callback_on_selected = self.setup_genre_screen)
+        self.roster = SongButtonRoster (file_name, color_theme)
+        SongScreen (window = self.window, roster = self.roster, callback_on_selected = self.setup_genre_screen, text = text)
                               
 def main():
 

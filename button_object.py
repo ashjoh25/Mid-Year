@@ -14,7 +14,7 @@ class StandardButton (object):
         self.text = text
 
     def draw(self, window):
-        pygame.draw.rect(window, self.color, (self.x, self.y, self.width, self.height))#, self.word)
+        pygame.draw.rect(window, self.color, (self.x, self.y, self.width, self.height)) #, self.word)
 
     def click(self, mousex, mousey):
 
@@ -62,10 +62,11 @@ class PlayPauseButton (object):
 
 class GenreButton (object):
 
-    def __init__(self, button, file_name):
+    def __init__(self, button, file_name, color_theme):
 
         self.standard_button = button 
         self.file_name = file_name
+        self.color_theme = color_theme
 
 class BackButton (object):
 
@@ -78,7 +79,8 @@ class BackButton (object):
 
 class SongButtonRoster (object):
 
-    def __init__(self, file_name): # color (t, u, z)
+
+    def __init__(self, file_name, color_theme):
 
         self.song_buttons_list = []
         y = 25
@@ -86,9 +88,9 @@ class SongButtonRoster (object):
         index = 0 
         f = open(file_name)
 
-        t = 231
-        u = 0
-        z = 255
+        t = color_theme[0]
+        u = color_theme[1]
+        z = color_theme[2]
 
         for line in f:
             c += 1
@@ -98,7 +100,7 @@ class SongButtonRoster (object):
 
             if c + 1:
                 t += 5
-                u += 55
+                u += 40
         
                 newButtonColor = (int(t), int(u), int(z))
 
@@ -122,25 +124,29 @@ class GenreButtonRoster (object):
         index = 0 
         f = open(file_name)
 
+        t = 231
+        u = 0
+        z = 255
+
+
         for line in f:
             c += 1
 
             # say if button added or +1 in button counter, change the color
             # make each number (x, u, z) a variable that will then change or get subtracted
-            t = 231
-            u = 0
-            z = 255
 
             if c + 1:
-                t += 10
-                u += 20
-                newButtonColor = (int(t), int(y), int(z))
+                t += 5
+                u += 40
+        
+                newButtonColor = (int(t), int(u), int(z))
 
             line = line.strip()
             line_elements = line.split(';')
+            color_theme = (int(line_elements[2]), int(line_elements[3]), int(line_elements[4]))
 
             b = StandardButton(x, 240, 100, 100, newButtonColor, str(index), line_elements[0])
-            b = GenreButton(b, line_elements[1])
+            b = GenreButton(b, line_elements[1], color_theme = color_theme)
 
             self.genre_buttons_list.append(b)
 

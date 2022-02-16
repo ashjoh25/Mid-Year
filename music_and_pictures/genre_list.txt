@@ -1,4 +1,4 @@
-Jeannelle's Picks;jeannelle_list.txt
-Ashley's Picks;ashley_list.txt
-Morgan's Picks;morgan_list.txt
-Vrielle's Picks;vrielle_list.txt
+Jeannelle's Picks!;song_list.txt;
+Ashley's Picks!;ashley_list.txt;
+Morgan's Picks!;morgan_list.txt;
+Vrielle's Picks!;vrielle_list.txt;170;0;230
