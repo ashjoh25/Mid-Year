@@ -48,8 +48,7 @@ class SongScreen (object):
         
        
 
-        self.window.blit(play, (275, 325))
-        self.window.blit(pause, (175, 325))
+
 
     #def play_pause(self, x, y, width, height, color, command):
 
