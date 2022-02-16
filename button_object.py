@@ -1,9 +1,33 @@
+from curses import window
 import pygame
 from pygame import mixer
+from pygame.locals import *
 
+pygame.init()
+
+
+font = pygame.font.SysFont("Arial", 30)
+
+#define colours
+bg = (204, 102, 0)
+red = (255, 0, 0)
+black = (0, 0, 0)
+white = (255, 255, 255)
+
+#define global variable
+clicked = False
+counter = 0
 class StandardButton (object):
 
-    def __init__(self, x, y, width, height, color, index, text): 
+    	#colours for button and text
+    button_col = (255, 0, 0)
+    hover_col = (75, 225, 255) 
+    click_col = (50, 150, 255)
+    text_col = black
+    width = 180
+    height = 70
+
+    def __init__(self, x, y, txt, width, height, color, index,): 
 
         self.x = x
         self.y = y
@@ -11,7 +35,7 @@ class StandardButton (object):
         self.height = height
         self.color = color
         self.command = index
-        self.text = text
+        self.txt = txt
 
     def draw(self, window):
         pygame.draw.rect(window, self.color, (self.x, self.y, self.width, self.height)) #, self.word)
@@ -23,8 +47,11 @@ class StandardButton (object):
             
         return False
     
-    def text(self):
-        pass
+    def draw_line(self):
+        pygame.draw.line(window, white, (self.x, self.y), (self.x + self.width, self.y), 2)
+        pygame.draw.line(window, white, (self.x, self.y), (self.x, self.y + self.height), 2)
+        pygame.draw.line(window, black, (self.x, self.y + self.height), (self.x + self.width, self.y + self.height), 2)
+        pygame.draw.line(window, black, (self.x + self.width, self.y), (self.x + self.width, self.y + self.height), 2)
 
 class SongButton (object):
 
