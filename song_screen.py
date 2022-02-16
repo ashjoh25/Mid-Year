@@ -7,6 +7,7 @@ class SongScreen (object):
         
         self.GAME_FONT = pygame.font.SysFont("arial.tff", 24, bold = False, italic = False)
 
+        self.run = True
         self.window = window
         self.roster = roster
         self.callback_on_selected = callback_on_selected

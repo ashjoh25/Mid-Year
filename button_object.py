@@ -86,19 +86,21 @@ class SongButtonRoster (object):
         index = 0 
         f = open(file_name)
 
+        t = 231
+        u = 0
+        z = 255
+
         for line in f:
             c += 1
 
             # say if button added or +1 in button counter, change the color
             # make each number (x, u, z) a variable that will then change or get subtracted
-            x = 231
-            u = 0
-            z = 255
 
             if c + 1:
-                x += 10
-                u += 20
-                newButtonColor = (int(x), int(y), int(z))
+                t += 5
+                u += 55
+        
+                newButtonColor = (int(t), int(u), int(z))
 
             line = line.strip()
             line_elements = line.split(';')
