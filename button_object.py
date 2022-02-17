@@ -26,11 +26,11 @@ class StandardButton (object):
 
         self.x = x
         self.y = y
+        self.txt = txt
         self.width = width
         self.height = height
         self.color = color
         self.command = index
-        self.txt = txt
 
     def draw(self, window):
         pygame.draw.rect(window, self.color, (self.x, self.y, self.width, self.height))#, self.word) 

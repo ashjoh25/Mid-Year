@@ -22,8 +22,8 @@ class SongScreen (object):
         pygame.display.set_caption(self.text)
         self.window.fill((225, 227, 231))
 
-        text_surface = self.GAME_FONT.render("Jukebox", True, (0, 0, 0))
-        self.window.blit(text_surface, (215, 6))
+        text_surface = self.GAME_FONT.render("Now Playing:", True, (0, 0, 0))
+        self.window.blit(text_surface, (200, 21))
 
         White = pygame.image.load('225, 227, 231.png')
         White = pygame.transform.scale(White, (250, 250))
