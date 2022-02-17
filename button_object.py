@@ -27,7 +27,7 @@ class StandardButton (object):
     width = 180
     height = 70
 
-    def __init__(self, x, y, txt, width, height, color, index,): 
+    def __init__(self, x, y, txt, width, height, color, index): 
 
         self.x = x
         self.y = y
@@ -38,7 +38,7 @@ class StandardButton (object):
         self.txt = txt
 
     def draw(self, window):
-        pygame.draw.rect(window, self.color, (self.x, self.y, self.width, self.height)) #, self.word)
+        pygame.draw.rect(window, self.color, (self.x, self.y, self.width, self.height))#, self.word) 
 
     def click(self, mousex, mousey):
 
@@ -133,7 +133,7 @@ class SongButtonRoster (object):
 
             line = line.strip()
             line_elements = line.split(';')
-            b = StandardButton(50, y, 100, 50, newButtonColor, str(index), line_elements[0])
+            b = StandardButton(50, y, line_elements[0], 100, 50, newButtonColor, str(index))
             b = SongButton(button = b, music = line_elements[1], image = line_elements[2])
             self.song_buttons_list.append(b)
 
@@ -146,7 +146,6 @@ class GenreButtonRoster (object):
 
         self.genre_buttons_list = []
         x = 20
-        y = 25
         c = 0
         index = 0 
         f = open(file_name)
@@ -172,7 +171,8 @@ class GenreButtonRoster (object):
             line_elements = line.split(';')
             color_theme = (int(line_elements[2]), int(line_elements[3]), int(line_elements[4]))
 
-            b = StandardButton(x, 240, 100, 100, newButtonColor, str(index), line_elements[0])
+           
+            b = StandardButton(x, 240, line_elements[0], 100, 100, newButtonColor, str(index))
             b = GenreButton(b, line_elements[1], color_theme = color_theme)
 
             self.genre_buttons_list.append(b)

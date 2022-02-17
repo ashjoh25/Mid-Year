@@ -37,9 +37,10 @@ class SongScreen (object):
         back_img = pygame.image.load('Back Button Icon.png')
         back_img = pygame.transform.scale(back_img, (50, 50))
         
-        pause_button = StandardButton(175, 325, 50, 50, (225, 227, 231), "pause", text = None)
-        unpause_button = StandardButton(275, 325, 50, 50, (225, 227, 231), "unpause", text = None)
-        back_button = StandardButton(7, 340, 50, 50, (225, 227, 231), "back", text = None)
+        # self, x, y, txt, width, height, color, index
+        pause_button = StandardButton(175, 325, None, 50, 50, (225, 227, 231), "pause")
+        unpause_button = StandardButton(275, 325, None, 50, 50, (225, 227, 231), "unpause")
+        back_button = StandardButton(7, 340, None, 50, 50, (225, 227, 231), "back")
 
         pause_button = PlayPauseButton(pause_button)
         unpause_button = PlayPauseButton(unpause_button)

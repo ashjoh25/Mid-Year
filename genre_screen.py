@@ -47,5 +47,5 @@ class GenreScreen (object):
                         
                         if item.standard_button.click(mousepos[0], mousepos[1]):
                         
-                            self.callback_on_selected(item.file_name, item.color_theme, item.standard_button.text)
+                            self.callback_on_selected(item.file_name, item.color_theme, item.standard_button.txt)
                             self.run = False
