@@ -26,6 +26,7 @@ class GenreScreen (object):
         for item in self.roster.genre_buttons_list:
 
             item.standard_button.draw(window = self.window)
+            item.standard_button.draw_line(window = self.window)
         
         pygame.display.update()
         

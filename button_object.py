@@ -3,16 +3,11 @@ import pygame
 from pygame import mixer
 from pygame.locals import *
 
-pygame.init()
-
-
-font = pygame.font.SysFont("Arial", 30)
+# font = pygame.font.SysFont("Arial", 30)
 
 #define colours
 bg = (204, 102, 0)
 red = (255, 0, 0)
-black = (0, 0, 0)
-white = (255, 255, 255)
 
 #define global variable
 clicked = False
@@ -23,7 +18,7 @@ class StandardButton (object):
     button_col = (255, 0, 0)
     hover_col = (75, 225, 255) 
     click_col = (50, 150, 255)
-    text_col = black
+    text_col = (255, 255, 255)
     width = 180
     height = 70
 
@@ -46,8 +41,12 @@ class StandardButton (object):
             return True
             
         return False
-    
-    def draw_line(self):
+
+    def draw_line(self, window):
+
+        black = (0, 0, 0)
+        white = (255, 255, 255)
+
         pygame.draw.line(window, white, (self.x, self.y), (self.x + self.width, self.y), 2)
         pygame.draw.line(window, white, (self.x, self.y), (self.x, self.y + self.height), 2)
         pygame.draw.line(window, black, (self.x, self.y + self.height), (self.x + self.width, self.y + self.height), 2)
@@ -94,7 +93,7 @@ class GenreButton (object):
         self.standard_button = button 
         self.file_name = file_name
         self.color_theme = color_theme
-
+    
 class BackButton (object):
 
     def __init__(self, button):
