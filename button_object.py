@@ -63,12 +63,9 @@ class SongButton (object):
         font = pygame.font.SysFont('Bradley Hand', 30)
         down = 0
 
-        if len(self.txt) > 0 and len(self.txt) <= 7:
-            font = pygame.font.SysFont("Bradley Hand", 22)
+        if len(self.txt) > 0 and len(self.txt) <= 9:
+            font = pygame.font.SysFont("Bradley Hand", 21)
             down = 13
-        elif len(self.txt) > 7 and len(self.txt) <= 9:
-            font = pygame.font.SysFont("Bradley Hand", 19)
-            down = 14
         elif len(self.txt) > 9 and len(self.txt) <= 11:
             font = pygame.font.SysFont("Bradley Hand", 17)
             down = 15
