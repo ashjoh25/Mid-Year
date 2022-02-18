@@ -5,7 +5,7 @@ class SongScreen (object):
 
     def __init__ (self, window, roster, callback_on_selected, text):
         
-        self.GAME_FONT = pygame.font.SysFont("arial.tff", 24, bold = False, italic = False)
+        self.GAME_FONT = pygame.font.SysFont("Bradley Hand", 20, bold = False, italic = False)
 
         self.run = True
         self.window = window
@@ -23,7 +23,7 @@ class SongScreen (object):
         self.window.fill((225, 227, 231))
 
         text_surface = self.GAME_FONT.render("Now Playing:", True, (0, 0, 0))
-        self.window.blit(text_surface, (200, 21))
+        self.window.blit(text_surface, (200, 19))
 
         White = pygame.image.load('225, 227, 231.png')
         White = pygame.transform.scale(White, (250, 250))
@@ -37,9 +37,9 @@ class SongScreen (object):
         back_img = pygame.image.load('Back Button Icon.png')
         back_img = pygame.transform.scale(back_img, (50, 50))
         
-        pause_button = StandardButton(175, 325, None, 50, 50, (225, 227, 231), "pause")
-        unpause_button = StandardButton(275, 325, None, 50, 50, (225, 227, 231), "unpause")
-        back_button = StandardButton(7, 340, None, 50, 50, (225, 227, 231), "back")
+        pause_button = StandardButton(175, 325, 50, 50, (225, 227, 231), "pause")
+        unpause_button = StandardButton(275, 325, 50, 50, (225, 227, 231), "unpause")
+        back_button = StandardButton(7, 340, 50, 50, (225, 227, 231), "back")
 
         pause_button = PlayPauseButton(pause_button)
         unpause_button = PlayPauseButton(unpause_button)
@@ -53,6 +53,7 @@ class SongScreen (object):
 
             item.standard_button.draw(window = self.window)
             item.standard_button.draw_line(window = self.window)
+            item.add_text(window = self.window)
             self.window.blit(play_img, (275, 325))
             self.window.blit(pause_img, (175, 325))
             self.window.blit(back_img, (7, 340))

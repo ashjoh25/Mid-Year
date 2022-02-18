@@ -1,32 +1,14 @@
-from curses import window
 import pygame
 from pygame import mixer
 from pygame.locals import *
+pygame.init()
 
-# font = pygame.font.SysFont("Arial", 30)
-
-#define colours
-bg = (204, 102, 0)
-red = (255, 0, 0)
-
-#define global variable
-clicked = False
-counter = 0
 class StandardButton (object):
 
-    	#colours for button and text
-    button_col = (255, 0, 0)
-    hover_col = (75, 225, 255) 
-    click_col = (50, 150, 255)
-    text_col = (255, 255, 255)
-    width = 180
-    height = 70
-
-    def __init__(self, x, y, txt, width, height, color, index): 
+    def __init__(self, x, y, width, height, color, index): 
 
         self.x = x
         self.y = y
-        self.txt = txt
         self.width = width
         self.height = height
         self.color = color
@@ -54,11 +36,13 @@ class StandardButton (object):
 
 class SongButton (object):
 
-    def __init__(self, button, music, image):
+    def __init__(self, button, music, image, txt):
 
         self.standard_button = button
         self.music = music
         self.image = image
+        self.txt = txt
+        self.text_color = (255, 255, 255)
 
     def play(self, command, roster):
 
@@ -74,6 +58,28 @@ class SongButton (object):
         window.blit(image, (200, 51))
         pygame.display.update()
 
+    def add_text(self, window):
+
+        font = pygame.font.SysFont('Bradley Hand', 30)
+        down = 0
+
+        if len(self.txt) > 0 and len(self.txt) <= 7:
+            font = pygame.font.SysFont("Bradley Hand", 22)
+            down = 13
+        elif len(self.txt) > 7 and len(self.txt) <= 9:
+            font = pygame.font.SysFont("Bradley Hand", 19)
+            down = 14
+        elif len(self.txt) > 9 and len(self.txt) <= 11:
+            font = pygame.font.SysFont("Bradley Hand", 17)
+            down = 15
+        elif len(self.txt) > 11:
+            font = pygame.font.SysFont("Bradley Hand", 12)
+            down = 16
+
+        text_img = font.render(self.txt, True, self.text_color)
+        text_len = text_img.get_width()
+        window.blit(text_img, (self.standard_button.x + int(self.standard_button.width / 2) - int(text_len / 2), self.standard_button.y + down))
+
 class PlayPauseButton (object):
 
     def __init__(self, button):
@@ -88,11 +94,33 @@ class PlayPauseButton (object):
 
 class GenreButton (object):
 
-    def __init__(self, button, file_name, color_theme):
+    def __init__(self, button, file_name, color_theme, txt, caption_txt):
 
         self.standard_button = button 
         self.file_name = file_name
         self.color_theme = color_theme
+        self.txt = txt 
+        self.caption_txt = caption_txt
+        self.text_color = (255, 255, 255)
+
+    def add_text(self, window):
+
+        font = pygame.font.SysFont('Bradley Hand', 30)
+        down = 0
+
+        if len(self.txt) > 0 and len(self.txt) < 7:
+            font = pygame.font.SysFont("Bradley Hand", 25)
+            down = 32
+        elif len(self.txt) == 7:
+            font = pygame.font.SysFont("Bradley Hand", 27)
+            down = 32
+        elif len(self.txt) > 7:
+            font = pygame.font.SysFont("Bradley Hand", 20)
+            down = 37
+
+        text_img = font.render(self.txt, True, self.text_color)
+        text_len = text_img.get_width()
+        window.blit(text_img, (self.standard_button.x + int(self.standard_button.width / 2) - int(text_len / 2), self.standard_button.y + down))
     
 class BackButton (object):
 
@@ -132,8 +160,8 @@ class SongButtonRoster (object):
 
             line = line.strip()
             line_elements = line.split(';')
-            b = StandardButton(50, y, line_elements[0], 100, 50, newButtonColor, str(index))
-            b = SongButton(button = b, music = line_elements[1], image = line_elements[2])
+            b = StandardButton(50, y, 100, 50, newButtonColor, str(index))
+            b = SongButton(button = b, music = line_elements[1], image = line_elements[2], txt = line_elements[0])
             self.song_buttons_list.append(b)
 
             y += 75 
@@ -168,11 +196,11 @@ class GenreButtonRoster (object):
 
             line = line.strip()
             line_elements = line.split(';')
-            color_theme = (int(line_elements[2]), int(line_elements[3]), int(line_elements[4]))
+            color_theme = (int(line_elements[3]), int(line_elements[4]), int(line_elements[5]))
 
-           
-            b = StandardButton(x, 240, line_elements[0], 100, 100, newButtonColor, str(index))
-            b = GenreButton(b, line_elements[1], color_theme = color_theme)
+           # self, button, file_name, color_theme, txt, caption_txt
+            b = StandardButton(x, 265, 100, 100, newButtonColor, str(index))
+            b = GenreButton(b, line_elements[2], color_theme = color_theme, txt = line_elements[0], caption_txt = line_elements[1])
 
             self.genre_buttons_list.append(b)
 

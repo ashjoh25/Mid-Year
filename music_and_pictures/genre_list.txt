@@ -1,4 +1,4 @@
-Jeannelle's Playlist!;song_list.txt;51;0;255
-Ashley's Playlist!;ashley_list.txt;210;145;188
-Morgan's Playlist!;morgan_list.txt;149;125;173
-Vrielle's Playlist!;vrielle_list.txt;170;0;230
+Jeannelle;Jeannelle's Playlist!;song_list.txt;51;0;255
+Ashley;Ashley's Playlist!;ashley_list.txt;210;145;188
+Morgan;Morgan's Playlist!;morgan_list.txt;149;125;173
+Vrielle;Vrielle's Playlist!;vrielle_list.txt;170;0;230
