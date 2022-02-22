@@ -5,7 +5,7 @@ class GenreScreen (object):
 
     def __init__(self, window, roster, callback_on_selected):
 
-        self.GAME_FONT = pygame.font.SysFont("arial.tff", 24, bold = False, italic = False)
+        self.GAME_FONT = pygame.font.SysFont("Bradley Hand", 24, bold = False, italic = False)
 
         self.window = window
         self.callback_on_selected = callback_on_selected
@@ -20,12 +20,14 @@ class GenreScreen (object):
         pygame.display.set_caption('Welcome to the Jukebox!')
         self.window.fill((225, 227, 231))
         
-        text_surface = self.GAME_FONT.render("Genres", True, (0, 0, 0))
-        self.window.blit(text_surface, (218, 10))
+        text_surface = self.GAME_FONT.render("Playlists:", True, (0, 0, 0))
+        self.window.blit(text_surface, (205, 215))
 
         for item in self.roster.genre_buttons_list:
 
             item.standard_button.draw(window = self.window)
+            item.standard_button.draw_line(window = self.window)
+            item.add_text(window = self.window)
         
         pygame.display.update()
         
@@ -47,5 +49,5 @@ class GenreScreen (object):
                         
                         if item.standard_button.click(mousepos[0], mousepos[1]):
                         
-                            self.callback_on_selected(item.file_name)
+                            self.callback_on_selected(item.file_name, item.color_theme, item.caption_txt)
                             self.run = False
