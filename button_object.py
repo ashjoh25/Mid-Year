@@ -150,9 +150,16 @@ class SongButtonRoster (object):
             # make each number (x, u, z) a variable that will then change or get subtracted
 
             if c + 1:
-                t += 5
-                u += 40
-        
+                
+                if z < u:
+                    u -= 5
+                    z += 25
+
+                elif u < z:
+                    t += 5
+                    u += 40
+
+
                 newButtonColor = (int(t), int(u), int(z))
 
             line = line.strip()
