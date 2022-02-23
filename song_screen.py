@@ -98,7 +98,3 @@ class SongScreen (object):
                                 item.stop()
                                 self.callback_on_selected()
                                 self.run = False
-                    
-
-      
-    

@@ -151,14 +151,17 @@ class SongButtonRoster (object):
 
             if c + 1:
                 
-                if z < u:
-                    u -= 5
+                if z < u and u > 100:
+                    u -= 10
                     z += 25
+
+                elif z < u:
+                    u += 15
+                    z += 15
 
                 elif u < z:
                     t += 5
                     u += 40
-
 
                 newButtonColor = (int(t), int(u), int(z))
 
@@ -210,4 +213,3 @@ class GenreButtonRoster (object):
 
             x += 120
             index += 1
-
