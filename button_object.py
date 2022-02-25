@@ -206,7 +206,7 @@ class GenreButtonRoster (object):
             color_theme = (int(line_elements[3]), int(line_elements[4]), int(line_elements[5]))
 
            # self, button, file_name, color_theme, txt, caption_txt
-            b = StandardButton(x, 265, 100, 100, newButtonColor, str(index))
+            b = StandardButton(x, 275, 100, 100, newButtonColor, str(index))
             b = GenreButton(b, line_elements[2], color_theme = color_theme, txt = line_elements[0], caption_txt = line_elements[1])
 
             self.genre_buttons_list.append(b)
