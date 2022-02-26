@@ -70,7 +70,7 @@ class SongButton (object):
             font = pygame.font.SysFont("Bradley Hand", 17)
             down = 15
         elif len(self.txt) > 11:
-            font = pygame.font.SysFont("Bradley Hand", 12)
+            font = pygame.font.SysFont("Bradley Hand", 15)
             down = 16
 
         text_img = font.render(self.txt, True, self.text_color)
