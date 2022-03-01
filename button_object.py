@@ -184,8 +184,8 @@ class GenreButtonRoster (object):
         index = 0 
         f = open(file_name)
 
-        t = 231
-        u = 0
+        t = 0
+        u = 179
         z = 255
 
 
@@ -196,8 +196,8 @@ class GenreButtonRoster (object):
             # make each number (x, u, z) a variable that will then change or get subtracted
 
             if c + 1:
-                t += 5
-                u += 40
+                t += 24
+                u += 12
         
                 newButtonColor = (int(t), int(u), int(z))
 
